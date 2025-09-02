@@ -130,6 +130,48 @@ gitlab_runner_parameters = {
 
 
 
+## 📑 Inputs
+| Name                                     | Description                                                    | Type     | Default                                       | Required |
+| ---------------------------------------- | -------------------------------------------------------------- | -------- | --------------------------------------------- | -------- |
+| enable                                   | Whether to enable CloudWatch for the GitLab runner             | `bool`   | `true`                                        | no       |
+| log_group_name                           | The name of the CloudWatch log group for the GitLab runner     | `null`   | `"${local.common_name}-gitlab-runner"`        | no       |
+| retention_days                           | Number of days to retain logs in CloudWatch                    | `number` | `30`                                          | no       |
+| collect_autoscaling_metrics              | List of autoscaling metrics to collect for the runner instance | `list`   | `[]`                                          | no       |
+| ebs_optimized                            | Whether the instance should be EBS optimized                   | `bool`   | `false`                                       | no       |
+| monitoring                               | Whether to enable detailed monitoring for the instance         | `bool`   | `false`                                       | no       |
+| name                                     | Name of the GitLab runner instance                             | `null`   | `"${local.common_name}-gitlab_runner"`        | no       |
+| name_prefix                              | Prefix for the instance name                                   | `null`   | `"${local.common_name}-gitlab_runner"`        | no       |
+| private_address_only                     | Whether the instance should have only a private IP address     | `bool`   | `false`                                       | no       |
+| root_device_config                       | Configuration for the root device volume                       | `map`    | `{ volume_size = 30 }`                        | no       |
+| spot_price                               | Spot price for the instance                                    | `null`   | `"on-demand-price"`                           | no       |
+| ssm_access                               | Whether to enable SSM access for the instance                  | `bool`   | `true`                                        | no       |
+| type                                     | Instance type for the runner                                   | `null`   | `"t3.medium"`                                 | no       |
+| use_eip                                  | Whether to assign an Elastic IP to the instance                | `bool`   | `false`                                       | no       |
+| runner_version                           | Version of the GitLab runner                                   | `null`   | `"17.0.0"`                                    | no       |
+| url                                      | URL of the GitLab instance                                     | `null`   | `"https://gitlab.com"`                        | no       |
+| access_token_secure_parameter_store_name | Secure parameter store name for the access token               | `null`   | `""`                                          | no       |
+| registration_token                       | Registration token for the runner                              | `null`   | `null`                                        | no       |
+| ami_filter                               | AMI filter to use for the GitLab runner instance               | `map`    | `{ name = ["amzn2-ami-hvm-2.*-x86_64-ebs"] }` | no       |
+| allow_iam_service_linked_role_creation   | Whether to allow IAM service-linked role creation              | `bool`   | `true`                                        | no       |
+| create_role_profile                      | Whether to create a role profile for the runner                | `bool`   | `true`                                        | no       |
+| iam_object_prefix                        | Prefix for IAM objects associated with the runner              | `null`   | `"${local.common_name}-gitlab_runner"`        | no       |
+| gitlab_check_interval                    | Interval (in minutes) to check GitLab                          | `number` | `3`                                           | no       |
+| maximum_concurrent_jobs                  | Maximum number of concurrent jobs                              | `number` | `3`                                           | no       |
+| max_jobs                                 | Maximum number of jobs a worker can handle                     | `number` | `0`                                           | no       |
+| output_limit                             | Output limit for the worker logs (in MB)                       | `number` | `4096`                                        | no       |
+| request_concurrency                      | Concurrency level for worker requests                          | `number` | `3`                                           | no       |
+| ssm_access                               | Whether the worker has SSM access                              | `bool`   | `false`                                       | no       |
+| type                                     | Worker type (e.g., `docker`, `docker+machine`)                 | `null`   | `"docker"`                                    | no       |
+| disable_cache                            | Whether to disable Docker cache                                | `null`   | `"false"`                                     | no       |
+| image                                    | Docker image to use for the runner                             | `null`   | `"docker:18.03.1-ce"`                         | no       |
+| privileged                               | Whether to run Docker in privileged mode                       | `null`   | `"true"`                                      | no       |
+| pull_policies                            | Docker pull policies                                           | `list`   | `["always"]`                                  | no       |
+| shm_size                                 | Size of `/dev/shm` (shared memory)                             | `number` | `0`                                           | no       |
+| tls_verify                               | Whether to enable TLS verification for Docker                  | `null`   | `"false"`                                     | no       |
+| volumes                                  | List of volumes to mount in the Docker container               | `list`   | `["/cache"]`                                  | no       |
+| runner_worker_docker_add_dind_volumes    | Whether to add DIND volumes to the Docker runner               | `bool`   | `true`                                        | no       |
+| runner_worker_docker_volumes_tmpfs       | List of tmpfs volumes to add to the Docker runner              | `list`   | `[]`                                          | no       |
+
 
 
 
