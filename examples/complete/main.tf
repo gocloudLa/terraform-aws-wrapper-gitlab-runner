@@ -15,10 +15,10 @@ module "wrapper_gitlab_runner" {
     # vpc_name    = "dmc-prd"  # Default: "${local.common_name}"
     # subnet_name = "dmc-prd-private*" # Default: "${local.common_name}-private*
 
-    # CONFIGURACION COMO SHARED RUNNER
+    # SHARED RUNNER CONFIGURATION 
     # Roles & Policies Settings 
-    # attach_default_policy = false # No Aplico Politicas de Acceso Default
-    # Configuro Roles que voy a asumir en cuentas externas
+    # attach_default_policy = false # Default Access politycs are not applied
+    # Roles configuration that will be assumed in external accounts
     # assumable_roles_arn = [
     #   "arn:aws:iam::123456789012:role/dmc-dev-gitlab-runner-assumable",
     #   "arn:aws:iam::123456789012:role/dmc-stg-gitlab-runner-assumable"
@@ -26,8 +26,7 @@ module "wrapper_gitlab_runner" {
     # assumable_roles_arn = ["*"] # Allow Runner to Asume external roles
   }
 }
-
-# Solo Genera un Rol que puede ser Asumido por un Shared Runner
+# Generates a Role that can be assumed by a Shared Runner
 # module "wrapper_gitlab_runner_role" {
 #   source = "../../"
 
@@ -35,12 +34,11 @@ module "wrapper_gitlab_runner" {
 
 #   gitlab_runner_parameters = {
 #     enable = false
-
-#     # CONFIGURACION PARA SOLO CREAR EL ROL Y DAR ACCESO A UN RUNNER EXTERNO ( shared )
+#     # CONFIG FOR JUST CREATING THE ROLE AND GIVING ACCESS TO AN EXTERN RUNNER ( shared )
 #     assumable_role_enable = true
-#     # ARN del rol de la instancia del Shared Runner
+#     # Shared Runner Instance Role ARN
 #     assumable_role_trusted_role_arn = "arn:aws:iam::123456789012:role/dmc-sha-gitlab_runner-instance"
-#     # Opcion Insegura, permitir asumir este rol a una cuenta externa
+#     # Insecure Option, allow an external account to assume this role
 #     # assumable_role_trusted_role_arn = "arn:aws:iam::123456789012:root"
 
 #     # additional_policy_json = data.aws_iam_policy_document.this.json
