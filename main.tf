@@ -1,6 +1,6 @@
 module "gitlab_runner" {
   source  = "cattle-ops/gitlab-runner/aws"
-  version = "9.2.2"
+  version = "9.2.3"
 
   count       = local.gitlab_runner_enable
   environment = try(var.gitlab_runner_parameters.environment, local.metadata.key.env)
@@ -147,7 +147,7 @@ resource "aws_iam_policy" "gitlab_runner_accounts_role" {
 
 module "iam_assumable_role_terraform_runner" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "5.45.0"
+  version = "6.2.1"
 
   trusted_role_arns       = [lookup(var.gitlab_runner_parameters, "assumable_role_trusted_role_arn", "")]
   create_instance_profile = false
