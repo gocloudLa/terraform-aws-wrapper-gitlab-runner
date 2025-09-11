@@ -21,8 +21,8 @@ The Terraform Wrapper for GitLab Runner simplifies the configuration of the GitL
 ### 🔗 External Modules
 | Name | Version |
 |------|------:|
-| <a href="https://github.com/cattle-ops/terraform-aws-gitlab-runner" target="_blank">cattle-ops/gitlab-runner/aws</a> | 9.2.2 |
-| <a href="https://github.com/terraform-aws-modules/terraform-aws-iam" target="_blank">terraform-aws-modules/iam/aws</a> | 5.45.0 |
+| <a href="https://github.com/cattle-ops/terraform-aws-gitlab-runner" target="_blank">cattle-ops/gitlab-runner/aws</a> | 9.2.3 |
+| <a href="https://github.com/terraform-aws-modules/terraform-aws-iam" target="_blank">terraform-aws-modules/iam/aws</a> | 6.2.1 |
 
 
 
