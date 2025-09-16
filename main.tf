@@ -136,40 +136,41 @@ resource "aws_iam_policy" "gitlab_runner" {
   policy = data.aws_iam_policy_document.gitlab_runner.json
 }
 
-## IAM ROLE PARA ACCESO DESDE SHARED RUNNER
-resource "aws_iam_policy" "gitlab_runner_accounts_role" {
+# IAM ROLE PARA ACCESO DESDE SHARED RUNNER EXTERNO (assumable_role_enable)
+resource "aws_iam_policy" "gitlab_runner_assumable_role" {
   count = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
 
   name   = "${local.common_name}-gitlab-runner-assumable"
   path   = "/"
-  policy = data.aws_iam_policy_document.gitlab_runner_accounts_role.json
+  policy = data.aws_iam_policy_document.gitlab_runner_assumable_role.json
 }
 
-module "iam_assumable_role_terraform_runner" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role"
-  version = "6.2.1"
-
-  create = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false)
-
-  name            = "${local.common_name}-gitlab-runner-assumable"
-  use_name_prefix = false
-
-  trust_policy_permissions = {
-    AllowAssumeRole = {
-      actions = [
-        "sts:AssumeRole",
-        "sts:TagSession",
-      ]
-      principals = [{
-        type        = "AWS"
-        identifiers = [lookup(var.gitlab_runner_parameters, "assumable_role_trusted_role_arn", "")]
-      }]
+data "aws_iam_policy_document" "gitlab_runner_assumable_role_assume_role_policy" {
+  count = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
+  statement {
+    actions = [
+      "sts:AssumeRole",
+      "sts:TagSession",
+    ]
+    principals {
+      type        = "AWS"
+      identifiers = [lookup(var.gitlab_runner_parameters, "assumable_role_trusted_role_arn", "")]
     }
   }
-  create_instance_profile = false
-  max_session_duration    = 3600
+}
 
-  policies = try({
-    GitLabRunnerAccountsRole = aws_iam_policy.gitlab_runner_accounts_role[0].arn
-  }, {})
+resource "aws_iam_role" "gitlab_runner_assumable_role" {
+  count = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
+
+  name               = "${local.common_name}-gitlab-runner-assumable"
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.gitlab_runner_assumable_role_assume_role_policy[0].json
+
+  max_session_duration = 3600
+}
+
+resource "aws_iam_role_policy_attachment" "gitlab_runner_assumable_role" {
+  count      = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
+  role       = aws_iam_role.gitlab_runner_assumable_role[0].name
+  policy_arn = aws_iam_policy.gitlab_runner_assumable_role[0].arn
 }
