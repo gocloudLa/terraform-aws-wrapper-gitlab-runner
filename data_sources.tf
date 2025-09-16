@@ -161,7 +161,7 @@ data "aws_iam_policy_document" "gitlab_runner" {
   }
 }
 
-data "aws_iam_policy_document" "gitlab_runner_accounts_role" {
+data "aws_iam_policy_document" "gitlab_runner_assumable_role" {
   source_policy_documents = [
     local.default_policy,
     local.additional_policy_json
