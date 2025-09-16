@@ -148,8 +148,18 @@ resource "aws_iam_policy" "gitlab_runner_accounts_role" {
 module "iam_assumable_role_terraform_runner" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role"
   version = "6.2.1"
+
+  create = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false)
+
+  name            = "${local.common_name}-gitlab-runner-assumable"
+  use_name_prefix = false
+
   trust_policy_permissions = {
     AllowAssumeRole = {
+      actions = [
+        "sts:AssumeRole",
+        "sts:TagSession",
+      ]
       principals = [{
         type        = "AWS"
         identifiers = [lookup(var.gitlab_runner_parameters, "assumable_role_trusted_role_arn", "")]
@@ -158,9 +168,8 @@ module "iam_assumable_role_terraform_runner" {
   }
   create_instance_profile = false
   max_session_duration    = 3600
-  create                  = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false)
 
-  name = "${local.common_name}-gitlab-runner-assumable"
-
-  policies = try(aws_iam_policy.gitlab_runner_accounts_role[0].arn, {})
+  policies = try({
+    GitLabRunnerAccountsRole = aws_iam_policy.gitlab_runner_accounts_role[0].arn
+  }, {})
 }
