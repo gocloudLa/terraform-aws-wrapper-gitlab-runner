@@ -166,11 +166,11 @@ resource "aws_iam_role" "gitlab_runner_assumable_role" {
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.gitlab_runner_assumable_role_assume_role_policy[0].json
 
-  max_session_duration  = 3600
+  max_session_duration = 3600
 }
 
 resource "aws_iam_role_policy_attachment" "gitlab_runner_assumable_role" {
-  count = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
+  count      = lookup(var.gitlab_runner_parameters, "assumable_role_enable", false) ? 1 : 0
   role       = aws_iam_role.gitlab_runner_assumable_role[0].name
   policy_arn = aws_iam_policy.gitlab_runner_assumable_role[0].arn
 }
