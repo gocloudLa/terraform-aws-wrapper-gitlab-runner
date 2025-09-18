@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.0...v1.0.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **assumable_role:** remove external module ussage ([#6](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/6)) ([c1ca88a](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/c1ca88a7fafb856369ae9fbe9289f4c191d8e33b))
+* **iam_assumable_role:** add missin actions & policies object format ([#4](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/4)) ([b5f4d53](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/b5f4d530b8d6330153e5168771814f4af296d252))
+* **terraform:** external modules upgrade 20250910 ([2bd037c](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/2bd037c8635d5f70eaecbdc651e8f8883126fb36))
+
 ## 1.0.0 (2025-09-05)
 
 
