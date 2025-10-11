@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.1...v1.0.2) (2025-10-11)
+
+
+### Bug Fixes
+
+* **deps:** bump cattle-ops/gitlab-runner/aws from 9.2.3 to 9.2.4 in the all-terraform-dependencies group across 1 directory ([#7](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/7)) ([0da2b81](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/0da2b81a3cdd79b46f1123f1b5d7cec3c9d565e1))
+
 ## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.0...v1.0.1) (2025-09-18)
 
 
