@@ -10,7 +10,7 @@ module "wrapper_gitlab_runner" {
     enable_schedule           = true
     schedule_config           = local.asg_schedules
     ami_filter                = { name = ["al2023-ami-2023*-x86_64"] }
-    
+
     # Para habilitar instancias On Demand habilitar la siguiente línea: 
     #spot_price                = null 
 
