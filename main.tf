@@ -1,6 +1,6 @@
 module "gitlab_runner" {
   source  = "cattle-ops/gitlab-runner/aws"
-  version = "9.3.0"
+  version = "9.5.0"
 
   count       = local.gitlab_runner_enable
   environment = try(var.gitlab_runner_parameters.environment, local.metadata.key.env)
