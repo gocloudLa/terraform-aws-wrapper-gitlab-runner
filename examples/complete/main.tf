@@ -11,6 +11,9 @@ module "wrapper_gitlab_runner" {
     schedule_config           = local.asg_schedules
     ami_filter                = { name = ["al2023-ami-2023*-x86_64"] }
 
+    # Para habilitar instancias On Demand habilitar la siguiente línea: 
+    #spot_price               = null 
+
     # Network Settings
     # vpc_name    = "dmc-prd"  # Default: "${local.common_name}"
     # subnet_name = "dmc-prd-private*" # Default: "${local.common_name}-private*
