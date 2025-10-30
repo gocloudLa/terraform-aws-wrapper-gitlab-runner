@@ -12,7 +12,7 @@ module "wrapper_gitlab_runner" {
     ami_filter                = { name = ["al2023-ami-2023*-x86_64"] }
 
     # Para habilitar instancias On Demand habilitar la siguiente línea: 
-    #spot_price                = null 
+    #spot_price               = null 
 
     # Network Settings
     # vpc_name    = "dmc-prd"  # Default: "${local.common_name}"
