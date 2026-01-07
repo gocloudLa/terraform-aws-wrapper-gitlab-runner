@@ -4,6 +4,7 @@ data "aws_caller_identity" "current" {}
 /* NetWorking | datasources                                             */
 /*----------------------------------------------------------------------*/
 data "aws_vpc" "this" {
+  count = local.gitlab_runner_enable
   filter {
     name = "tag:Name"
     values = [
@@ -14,9 +15,10 @@ data "aws_vpc" "this" {
 
 
 data "aws_subnets" "this" {
+  count = local.gitlab_runner_enable
   filter {
     name   = "vpc-id"
-    values = [data.aws_vpc.this.id]
+    values = [data.aws_vpc.this[0].id]
   }
 
   tags = {

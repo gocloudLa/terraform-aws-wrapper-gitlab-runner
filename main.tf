@@ -96,8 +96,8 @@ module "gitlab_runner" {
 
   security_group_prefix = try(var.gitlab_runner_parameters.security_group_prefix, "${local.common_name}-gitlab_runner")
 
-  vpc_id    = data.aws_vpc.this.id
-  subnet_id = element(data.aws_subnets.this.ids, 0)
+  vpc_id    = data.aws_vpc.this[0].id
+  subnet_id = element(data.aws_subnets.this[0].ids, 0)
 
   # Runner cache
 
