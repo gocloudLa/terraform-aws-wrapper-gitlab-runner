@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.2...v1.1.0) (2026-01-07)
+
+
+### Features
+
+* **module:** add condition to datasources ([#12](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/12)) ([2f144f6](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/2f144f6b976f9238ae3cfa08cdd457c865e4ada7))
+
+
+### Bug Fixes
+
+* **module:** version upgrade ([#10](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/10)) ([d5819ea](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/d5819ea3bd86d41f50243b80856a367c21a03344))
+
 ## [1.0.2](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.1...v1.0.2) (2025-10-11)
 
 
