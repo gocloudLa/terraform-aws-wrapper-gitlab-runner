@@ -96,6 +96,9 @@ module "gitlab_runner" {
 
   security_group_prefix = try(var.gitlab_runner_parameters.security_group_prefix, "${local.common_name}-gitlab_runner")
 
+  runner_ingress_rules = try(var.gitlab_runner_parameters.runner_ingress_rules, {})
+  runner_egress_rules  = try(var.gitlab_runner_parameters.runner_egress_rules, local.default_runner_egress_rules)
+
   vpc_id    = data.aws_vpc.this[0].id
   subnet_id = element(data.aws_subnets.this[0].ids, 0)
 

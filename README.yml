@@ -141,3 +141,5 @@ input_table: |
   | volumes | List of volumes to mount in the Docker container | `list` | `["/cache"]` | no |
   | runner_worker_docker_add_dind_volumes | Whether to add DIND volumes to the Docker runner | `bool` | `true` | no |
   | runner_worker_docker_volumes_tmpfs | List of tmpfs volumes to add to the Docker runner | `list` | `[]` | no |
+  | runner_ingress_rules | Map of ingress rules for the Runner Manager security group | `map(object)` | `{}` | no |
+  | runner_egress_rules | Map of egress rules for the Runner Manager security group (default allows HTTPS IPv4/IPv6) | `map(object)` | see below | no |
