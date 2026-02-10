@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.1.0...v1.2.0) (2026-02-10)
+
+
+### Features
+
+* **sg:** add custom rules support ([#13](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/issues/13)) ([876446a](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/commit/876446a9b71b72092c92b52ff67755cd8ab93da9))
+
 ## [1.1.0](https://github.com/gocloudLa/terraform-aws-wrapper-gitlab-runner/compare/v1.0.2...v1.1.0) (2026-01-07)
 
 
