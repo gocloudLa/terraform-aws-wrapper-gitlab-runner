@@ -119,7 +119,7 @@ module "gitlab_runner" {
     versioning                               = try(var.gitlab_runner_parameters.versioning, false)
   }
 
-  # tags = local.common_tags
+  tags = merge(local.common_tags, try(var.gitlab_runner_parameters.tags, null))
 
 }
 
@@ -137,6 +137,8 @@ resource "aws_iam_policy" "gitlab_runner" {
   name   = "${local.common_name}-gitlab-runner"
   path   = "/"
   policy = data.aws_iam_policy_document.gitlab_runner.json
+
+  tags = merge(local.common_tags, try(var.gitlab_runner_parameters.tags, null))
 }
 
 # IAM ROLE PARA ACCESO DESDE SHARED RUNNER EXTERNO (assumable_role_enable)
@@ -146,6 +148,8 @@ resource "aws_iam_policy" "gitlab_runner_assumable_role" {
   name   = "${local.common_name}-gitlab-runner-assumable"
   path   = "/"
   policy = data.aws_iam_policy_document.gitlab_runner_assumable_role.json
+
+  tags = merge(local.common_tags, try(var.gitlab_runner_parameters.tags, null))
 }
 
 data "aws_iam_policy_document" "gitlab_runner_assumable_role_assume_role_policy" {
@@ -170,6 +174,8 @@ resource "aws_iam_role" "gitlab_runner_assumable_role" {
   assume_role_policy = data.aws_iam_policy_document.gitlab_runner_assumable_role_assume_role_policy[0].json
 
   max_session_duration = 3600
+
+  tags = merge(local.common_tags, try(var.gitlab_runner_parameters.tags, null))
 }
 
 resource "aws_iam_role_policy_attachment" "gitlab_runner_assumable_role" {
